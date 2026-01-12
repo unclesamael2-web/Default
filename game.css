@@ -117,6 +117,9 @@ main {
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
 }
 
 .tab-btn.active {
@@ -138,6 +141,9 @@ main {
     overflow-y: hidden;
     align-items: center;
     scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    touch-action: pan-x;
 }
 
 #items-container::-webkit-scrollbar {
@@ -169,6 +175,9 @@ main {
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
 }
 
 .item-card:hover {
@@ -233,6 +242,9 @@ footer {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
 }
 
 #clear-btn {

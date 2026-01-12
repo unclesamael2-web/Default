@@ -1346,8 +1346,18 @@ function renderItems(category) {
             <div class="item-name">${item.name}</div>
         `;
 
-        card.addEventListener('click', () => toggleItem(category, item));
+        // Handle both click and touch events
+        let touchMoved = false;
+        card.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
+        card.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
         card.addEventListener('touchend', (e) => {
+            if (!touchMoved) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleItem(category, item);
+            }
+        }, { passive: false });
+        card.addEventListener('click', (e) => {
             e.preventDefault();
             toggleItem(category, item);
         });
@@ -1460,23 +1470,50 @@ function showToast(message) {
     }, 2000);
 }
 
-// Event listeners
+// Event listeners - handle both click and touch for mobile compatibility
 document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => switchCategory(btn.dataset.category));
+    const handler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        switchCategory(btn.dataset.category);
+    };
+    btn.addEventListener('click', handler);
+    btn.addEventListener('touchend', handler, { passive: false });
 });
 
-document.getElementById('clear-btn').addEventListener('click', clearAll);
-document.getElementById('random-btn').addEventListener('click', randomOutfit);
-document.getElementById('save-btn').addEventListener('click', saveLook);
+const clearBtn = document.getElementById('clear-btn');
+const randomBtn = document.getElementById('random-btn');
+const saveBtn = document.getElementById('save-btn');
 
-// Prevent double-tap zoom
-document.addEventListener('touchend', (e) => {
-    if (e.target.classList.contains('tab-btn') ||
-        e.target.classList.contains('action-btn') ||
-        e.target.classList.contains('item-card')) {
-        e.preventDefault();
+// Clear button
+clearBtn.addEventListener('click', (e) => { e.preventDefault(); clearAll(); });
+clearBtn.addEventListener('touchend', (e) => { e.preventDefault(); e.stopPropagation(); clearAll(); }, { passive: false });
+
+// Random button
+randomBtn.addEventListener('click', (e) => { e.preventDefault(); randomOutfit(); });
+randomBtn.addEventListener('touchend', (e) => { e.preventDefault(); e.stopPropagation(); randomOutfit(); }, { passive: false });
+
+// Save button
+saveBtn.addEventListener('click', (e) => { e.preventDefault(); saveLook(); });
+saveBtn.addEventListener('touchend', (e) => { e.preventDefault(); e.stopPropagation(); saveLook(); }, { passive: false });
+
+// Prevent double-tap zoom on the whole document for game elements
+document.addEventListener('touchstart', (e) => {
+    if (e.target.closest('.tab-btn') ||
+        e.target.closest('.action-btn') ||
+        e.target.closest('.item-card')) {
+        e.target.style.opacity = '0.7';
     }
-}, { passive: false });
+}, { passive: true });
+
+document.addEventListener('touchend', (e) => {
+    // Reset opacity for visual feedback
+    if (e.target.closest('.tab-btn') ||
+        e.target.closest('.action-btn') ||
+        e.target.closest('.item-card')) {
+        e.target.style.opacity = '';
+    }
+}, { passive: true });
 
 // Initialize
 window.addEventListener('resize', resizeCanvas);

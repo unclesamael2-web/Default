@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Style Me Up! - Dress Up Game</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div id="game-container">
+        <header>
+            <h1>Style Me Up!</h1>
+        </header>
+
+        <main>
+            <div id="character-area">
+                <canvas id="character-canvas"></canvas>
+            </div>
+
+            <div id="wardrobe-panel">
+                <div id="category-tabs">
+                    <button class="tab-btn active" data-category="hair">Hair</button>
+                    <button class="tab-btn" data-category="tops">Tops</button>
+                    <button class="tab-btn" data-category="bottoms">Bottoms</button>
+                    <button class="tab-btn" data-category="shoes">Shoes</button>
+                    <button class="tab-btn" data-category="accessories">Acc</button>
+                </div>
+
+                <div id="items-container">
+                    <!-- Items will be dynamically generated -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <button id="clear-btn" class="action-btn">Clear All</button>
+            <button id="random-btn" class="action-btn">Random</button>
+            <button id="save-btn" class="action-btn">Save Look</button>
+        </footer>
+    </div>
+
+    <div id="toast" class="hidden"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>

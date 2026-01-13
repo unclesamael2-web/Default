@@ -72,6 +72,7 @@ main {
 #character-area {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: linear-gradient(180deg, #e8f4ff 0%, #d4e9ff 50%, #b8d4f0 100%);
@@ -80,6 +81,72 @@ main {
     position: relative;
     min-height: 200px;
     overflow: hidden;
+}
+
+#character-controls {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#skin-tones {
+    display: flex;
+    gap: 4px;
+}
+
+.skin-btn {
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.skin-btn:hover {
+    transform: scale(1.1);
+}
+
+.skin-btn.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary), 0 2px 8px rgba(0,0,0,0.3);
+}
+
+#pose-select {
+    display: flex;
+    gap: 4px;
+}
+
+.pose-btn {
+    padding: 6px 10px;
+    border: none;
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.pose-btn.active {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
 }
 
 #character-canvas {

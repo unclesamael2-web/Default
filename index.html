@@ -12,11 +12,26 @@
     <div id="game-container">
         <header>
             <h1>Style Me Up!</h1>
-            <span id="version">v1.1.0</span>
+            <span id="version">v2.0.0</span>
         </header>
 
         <main>
             <div id="character-area">
+                <div id="character-controls">
+                    <div id="skin-tones">
+                        <button class="skin-btn active" data-skin="0" style="background: #f5d0c5;"></button>
+                        <button class="skin-btn" data-skin="1" style="background: #e8b89a;"></button>
+                        <button class="skin-btn" data-skin="2" style="background: #d4a574;"></button>
+                        <button class="skin-btn" data-skin="3" style="background: #c68642;"></button>
+                        <button class="skin-btn" data-skin="4" style="background: #8d5524;"></button>
+                        <button class="skin-btn" data-skin="5" style="background: #5c3a21;"></button>
+                    </div>
+                    <div id="pose-select">
+                        <button class="pose-btn active" data-pose="standing">Stand</button>
+                        <button class="pose-btn" data-pose="handOnHip">Sassy</button>
+                        <button class="pose-btn" data-pose="waving">Wave</button>
+                    </div>
+                </div>
                 <canvas id="character-canvas"></canvas>
             </div>
 

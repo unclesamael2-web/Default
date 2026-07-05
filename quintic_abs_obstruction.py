@@ -118,10 +118,11 @@ print("the coefficients and the roots for |.| -- or cos/arccos -- to grab.")
 from sympy.combinatorics import SymmetricGroup
 S4g, S5g = SymmetricGroup(4), SymmetricGroup(5)
 assert S4g.is_solvable and not S5g.is_solvable
-series_orders = [H.order() for H in S5g.composition_series()]
-assert series_orders == [120, 60, 1], series_orders
-print("\n[verified: S4 solvable; S5 not solvable, composition series has")
-print(" orders 120 > 60 > 1 -- one sign layer, then the simple A5 wall.")
+series_orders = [H.order() for H in S5g.derived_series()]
+assert series_orders == [120, 60], series_orders   # stalls at A5: perfect
+print("\n[verified: S4 solvable; S5 not solvable -- its derived series")
+print(" descends one step to A5 (order 60) and STOPS: A5 equals its own")
+print(" commutator subgroup.  One sign layer, then the simple A5 wall.")
 print(" (No index-3 or -4 subgroup exists either: the coset action would")
 print(" give a map S5 -> S3 or S4 whose kernel must be one of S5's only")
 print(" normal subgroups {1, A5, S5}, and none has the right size.)]")
